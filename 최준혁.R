@@ -18,8 +18,8 @@ ch <- createWorkbook()
   html <- read_html(url)
 
   html %>%
-    html_nodes('.items') %>%
-    html_nodes('li') -> lis
+    html_nodes('ul') %>%
+    html_nodes('li') ->lis
   lis
 
   price <- c()
@@ -31,7 +31,8 @@ ch <- createWorkbook()
       price <- c(price, pr)
       name <- c(name, html_text(li, 'h3') %>% html_text())
       msg <- c(msg, html_node(li, '.msg') %>% html_text())
-     }
+    }
+  
   menu <- data.frame(name=name, msg=msg, price=price)
   df_menu <- rbind.data.frame(df_menu, menu)
 

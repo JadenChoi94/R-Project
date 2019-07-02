@@ -4,7 +4,7 @@ library(rvest)
 library(dplyr)
 library(stringr)
 
-trim<-function(x) gsub('^\\s+|\\s+$', '', x)
+trim<-function(x) gsub('\n^\\s+|\\s+$', '', x)
 
 base_url<-'http://www.hanbit.co.kr/academy/books/category_list.html?'
 page<-'page='
