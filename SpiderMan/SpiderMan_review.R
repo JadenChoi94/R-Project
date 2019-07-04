@@ -1,4 +1,5 @@
-#SpiderMan Far from home
+#SpiderMan Far from home, crawling
+setwd('D:/Workspace/R-Project/SpiderMan')
 library(rvest)
 library(stringr)
 library(dplyr)
@@ -19,21 +20,21 @@ end_page<-ceiling(as.numeric(pages)/10)
 dfs <- data.frame(score=c(), review=c(), writer=c(), time=c())
 
 for(total_pages in 1:end_page){
-  if(i%%100==0)
-    print(i)
+  if(total_pages %% 100 == 0)
+    print(total_pages)
   url <- paste0(main_url, total_pages)
-  html <- read_html(url)
-  
-  html %>%
-    html_node('iframe.ifr') %>%
-    html_attr('src')->url2
-  
-  ifr_url <- paste0(main_url, url2) 
-  html2 <- read_html(ifr_url)
-  html2 %>%
+  html <- read_html(url) %>%
     html_node('div.score_result') %>%
     html_nodes('li') -> lis
   
+  # html %>%
+  #   html_node('iframe.ifr') %>%
+  #   html_attr('src')->url2
+  # 
+  # ifr_url <- paste0(main_url, url2) 
+  # html2 <- read_html(ifr_url)
+  # html2 %>%
+
    score <- c()
    review <- c()
    writer <- c()
