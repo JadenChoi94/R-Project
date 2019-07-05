@@ -17,7 +17,7 @@ pages <- str_sub(tmp, 9, -2)
 pages<-gsub(',', '', pages)
 end_page<-ceiling(as.numeric(pages)/10)
 #데이터를 저장할 데이터프레임 초기화
-dfs <- data.frame(score=c(), review=c(), writer=c(), time=c())
+dfs <- data.frame(score=c(), review=c(), writer=c(), datetime=c())
 
 for(total_pages in 1:end_page){
   if(total_pages %% 100 == 0)
@@ -38,7 +38,7 @@ for(total_pages in 1:end_page){
    score <- c()
    review <- c()
    writer <- c()
-   time <- c()
+   datetime <- c()
   
     for (li in lis) {
       score <- c(score, html_node(li,'.star_score') %>% 
@@ -57,9 +57,9 @@ for(total_pages in 1:end_page){
       
       comments <- trim(str_sub(comments, idx[1], -1))
       idx <- str_locate(comments, "\r")
-      time <- c(time, str_sub(comments, 1, idx[1]-1))
+      datetime <- c(datetime, str_sub(comments, 1, idx[1]-1))
     }
-  total_review <- data.frame(score=score, review=review, writer=writer, time=time)
+  total_review <- data.frame(score=score, review=review, writer=writer, datetime=datetime)
   dfs <- rbind.data.frame(dfs, total_review)
 }
 write.csv(dfs, "SpiderMan_review.csv" , row.names = FALSE)
