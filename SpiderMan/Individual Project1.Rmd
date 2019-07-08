@@ -126,16 +126,15 @@ data3<-data2 %>%
   group_by(date) %>%
   summarise(average=mean(score)) 
   
-date_review<-ggplot(data3, aes(x=date, y=average, fill=average)) +
+ggplot(data3, aes(x=date, y=average, fill=average)) +
   labs(x='날짜', y='평균 평점') +
   geom_bar(width=0.5, stat='identity') +
   geom_hline(yintercept=seq(0,8,2.5), lty='dotted', size=0.1)+
   ggtitle('스파이더맨 날짜별 평균 평점') +
   theme(plot.title = element_text(face = "bold", hjust = 0.5, 
                                   size = 15, color = "red3"))
-ggplotly(date_review)
 
-hour_review<-data2[,-1] %>% 
+data2[,-1] %>% 
   group_by(time) %>% 
   summarise(avr=round(mean(score),1)) %>% 
   arrange(time) %>% 
@@ -147,8 +146,6 @@ hour_review<-data2[,-1] %>%
   ggtitle('스파이더맨 시간대별 평균 평점') +
   theme(plot.title = element_text(face = "bold", hjust = 0.5, 
                                   size = 15, color = "red3"))
-
-ggplotly(hour_review)
 
 #평점별로 얼마나 긴 평가를 남기는지 살펴보기 위해, 평점별 영화평 글자수의 box-plot을 그려보았습니다.
 num_cha<-as.character(data$review)

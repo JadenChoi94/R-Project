@@ -9,7 +9,6 @@ library(nycflights13)
 library(dplyr)
 library(lubridate)
 library(plotly)
-windowsFonts()
 windowsFonts(malgun = "맑은 고딕")
 theme_update(text = element_text(family = "malgun"))
 

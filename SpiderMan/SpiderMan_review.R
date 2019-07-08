@@ -26,14 +26,6 @@ for(total_pages in 1:end_page){
   html <- read_html(url) %>%
     html_node('div.score_result') %>%
     html_nodes('li') -> lis
-  
-  # html %>%
-  #   html_node('iframe.ifr') %>%
-  #   html_attr('src')->url2
-  # 
-  # ifr_url <- paste0(main_url, url2) 
-  # html2 <- read_html(ifr_url)
-  # html2 %>%
 
    score <- c()
    review <- c()
